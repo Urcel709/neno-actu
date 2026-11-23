@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #e9272d;
+  --ink: #111827;
+  --soft: #f3f4f6;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-extrabold tracking-tight;
+  }
+  :focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-page px-4 sm:px-6;
+  }
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 text-sm font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-brand {
+    @apply btn bg-brand text-white hover:bg-brand-dark;
+  }
+  .btn-dark {
+    @apply btn bg-ink text-white hover:bg-black;
+  }
+  .btn-ghost {
+    @apply btn border border-gray-300 bg-white text-ink hover:border-ink;
+  }
+  .field {
+    @apply min-h-11 w-full rounded-md border border-gray-300 bg-white px-3 text-base text-ink placeholder:text-gray-400 focus:border-ink focus:outline-none;
+  }
+  textarea.field {
+    @apply py-2;
+  }
+  .label {
+    @apply mb-1 block text-sm font-semibold text-ink;
+  }
+  .tag-red {
+    @apply inline-block bg-brand px-2 py-0.5 text-[11px] font-extrabold uppercase tracking-wider text-white;
+  }
+  .kicker {
+    @apply text-xs font-extrabold uppercase tracking-wider text-brand;
+  }
+  .prose-article {
+    @apply text-[1.075rem] leading-8 text-gray-800;
+  }
+  .prose-article p {
+    @apply my-5;
+  }
+  .prose-article h2 {
+    @apply mb-3 mt-10 text-2xl text-ink;
+  }
+  .prose-article h3 {
+    @apply mb-2 mt-8 text-xl text-ink;
+  }
+  .prose-article ul {
+    @apply my-5 list-disc space-y-2 pl-6;
+  }
+  .prose-article ol {
+    @apply my-5 list-decimal space-y-2 pl-6;
+  }
+  .prose-article blockquote {
+    @apply my-8 border-l-4 border-brand py-1 pl-5 font-display text-xl font-bold leading-snug text-ink;
+  }
+  .prose-article a {
+    @apply font-semibold text-brand underline underline-offset-2 hover:text-brand-dark;
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.ticker-track {
+  animation: ticker 40s linear infinite;
+}
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
